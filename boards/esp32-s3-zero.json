@@ -1,0 +1,33 @@
+{
+  "build": {
+    "arduino": {
+      "ldscript": "esp32s3_out.ld"
+    },
+    "core": "esp32",
+    "extra_flags": [
+      "-DARDUINO_ESP32S3_DEV"
+    ],
+    "f_cpu": "240000000L",
+    "f_flash": "80000000L",
+    "flash_mode": "dio",
+    "mcu": "esp32s3",
+    "variant": "esp32s3"
+  },
+  "connectivity": [
+    "wifi",
+    "bluetooth"
+  ],
+  "frameworks": [
+    "arduino"
+  ],
+  "name": "ESP32-S3 Zero 4MB",
+  "url": "https://www.espressif.com/",
+  "vendor": "Espressif",
+  "upload": {
+    "flash_size": "4MB",
+    "maximum_ram_size": 327680,
+    "maximum_size": 4194304,
+    "require_upload_port": true,
+    "speed": 460800
+  }
+}

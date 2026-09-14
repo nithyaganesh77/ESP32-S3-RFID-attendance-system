@@ -1,0 +1,52 @@
+#pragma once
+
+// ---------- WiFi ----------
+// Copy this file to include/config.h and fill in your own values.
+// config.h is git-ignored and must never be committed.
+#define WIFI_SSID  "YOUR_WIFI_SSID"
+#define WIFI_PASS  "YOUR_WIFI_PASSWORD"
+
+// ---------- Google Sheets webhook ----------
+// Deploy google-apps-script/Code_RFID.gs as a Web App and paste the URL here.
+#define SHEETS_WEBHOOK_URL "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"
+
+// ---------- Timezone ----------
+#define TZ_STRING           "IST-5:30"
+#define GMT_OFFSET_SEC      19800
+#define DAYLIGHT_OFFSET_SEC 0
+#define NTP_SERVER          "pool.ntp.org"
+
+// ---------- Pins (ESP32-S3 Zero) ----------
+// RC522 (SPI)
+#define SS_PIN   10
+#define RST_PIN  9
+#define SCK_PIN  12
+#define MOSI_PIN 11
+#define MISO_PIN 13
+
+// I2C LCD (16x2, PCF8574 backpack)
+#define I2C_SDA  4
+#define I2C_SCL  5
+#define LCD_ADDR 0x27
+#define LCD_COLS 16
+#define LCD_ROWS 2
+
+// Buzzer (active buzzer — driven with plain digitalWrite HIGH/LOW).
+// GPIO6 is free given the SPI/I2C pins already in use above; change if
+// your wiring differs.
+#define BUZZER_PIN 6
+#define BUZZER_BEEP_MS 100
+
+// ---------- Behavior ----------
+#define SCAN_COOLDOWN_MS      3000   // ignore duplicate rapid scans of same card
+#define SYNC_INTERVAL_MS      15000  // how often to try pushing queued scans to Sheets
+#define PENDING_FILE          "/pending.jsonl"
+
+// Plain CSV file you edit yourself and upload to the device via
+// `pio run --target uploadfs` (put it in your project's data/ folder).
+// Format: one line per card => UID,Name
+//   04A3B2C1,John Doe
+//   1122AABB,Jane Smith
+// UIDs not found in this file are stored/synced with name "Unknown" —
+// a scan is never dropped just because it isn't registered yet.
+#define NAMES_FILE "/names.csv"
